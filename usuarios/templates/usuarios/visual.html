@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>CRUD - Read</title>
+    <style>
+      li {padding: 5px}
+    </style>
+  </head>
+  <body>
+    <h2>Detalhes de {{ usuario.nome }}</h2>
+  {% block content %}
+    <p>ID: {{ usuario.identificacao }}</p>
+    <p>Nome: {{ usuario.nome }}</p>
+    <p>Data de nascimento: {{ usuario.data_nascimento }}</p>
+    <p>Tel residencial: {{ usuario.tel_residencial }}</p>
+    {% if usuario.tel_comercial %}
+    <p>Tel comercial: {{ usuario.tel_comercial }}</p>
+    {% endif %}
+    <p>Endereço residencial: {{ usuario.endereco_residencial }}</p>
+    {% if usuario.endereco_comercial %}
+    <p>Endereço comercial: {{ usuario.endereco_comercial }}</p>
+    {% endif %}
+    <p>Contato:</p>
+    <ul>
+    {% if usuario.facebook or usuario.linkedin or usuario.twitter or usuario.instagram %}
+      {% if usuario.facebook %}
+      <li><a href="{{ usuario.facebook }}">Facebook</a></li>
+      {% endif %}
+      {% if usuario.linkedin %}
+      <li><a href="{{ usuario.linkedin }}">Linkedin</a></li>
+      {% endif %}
+      {% if usuario.twitter %}
+      <li><a href="{{ usuario.twitter }}">Twitter</a></li>
+      {% endif %}
+      {% if usuario.instagram %}
+      <li><a href="{{ usuario.instagram }}">Instagram</a></li>
+      {% endif %}
+    {% else %}
+    <li>Não há informações</li>
+    {% endif %}
+    </ul>
+    <br>
+    <div>
+      <p style="display: inline; padding: 15px;"><a href="{% url 'usuarios:lista' %}">Voltar</a></p>
+      <p style="display: inline; padding: 15px;"><a href="{% url 'usuarios:usuario_atualizar' usuario.id %}">Editar</a></p>
+      <p style="display: inline; padding: 15px;"><a href="{% url 'usuarios:usuario_del' usuario.id %}">Deletar</a></p>
+    </div>
+  {% endblock %}
+  </body>
+</html>

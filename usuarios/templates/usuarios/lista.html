@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>CRUD - Read</title>
+    <style>
+      li {padding-top: 25px; padding-bottom: 25px;}
+    </style>
+  </head>
+  <body>
+    <h1>Lista de usuários</h1>
+    <a href="{% url 'usuarios:usuario_criar' %}">Adicionar usuário</a>
+    {% if pesquisa %}
+    <h4>Exibindo resultados para "{{ pesquisa }}": </h4>
+    {% else %}
+    <h4>Todos os usuários: </h4>
+    {% endif %}
+    <div style="float:right">
+      <form>
+        <input type="text" placeholder="Pesquisar..." name="pesquisa"
+        {% if pesquisa %} value="{{ pesquisa }}" {% endif %}>
+        <button type="submit">Ok</button>
+        <a href="{% url 'usuarios:lista' %}"></a>
+      </form>
+    </div>
+  {% block content %}
+    {% if page_obj %}
+    
+    <ul>
+      {% for usuario in page_obj %}
+      <li>
+        <a href="{% url 'usuarios:usuario_vis' usuario.id %}">{{ usuario.nome }}</a> 
+        (ID: {{ usuario.identificacao }}) 
+      </li>
+      {% endfor %}
+    </ul>
+    
+    {% else %}
+    <p>Não há usuários cadastrados{% if pesquisa %}<span> para "{{ pesquisa }}"</span>{% endif %}</p>
+    {% endif %}
+    {% if pesquisa %}
+    <p><a href="{% url 'usuarios:lista' %}">Voltar</a></p>
+    {% endif %}
+
+
+    <!-- Navegação por página -->
+    <!-- Ref: https://docs.djangoproject.com/en/3.1/topics/pagination/ -->
+
+    <div class="pagination" style="padding-top: 20px; text-align: center;">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+            {% if pesquisa %}
+              <a href="?pesquisa={{ pesquisa }}&page=1">&laquo; primeira</a>
+              <a href="?pesquisa={{ pesquisa }}&page={{ page_obj.previous_page_number }}">anterior</a>
+            {% else %}
+              <a href="?page=1">&laquo; primeira</a>
+              <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+            {% endif %}
+          {% endif %}
+  
+          <span class="current">
+              Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+          </span>
+  
+          {% if page_obj.has_next %}
+            {% if pesquisa %}
+              <a href="?pesquisa={{ pesquisa }}&page={{ page_obj.next_page_number }}">próxima</a>
+              <a href="?pesquisa={{ pesquisa }}&page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+            {% else %}
+              <a href="?page={{ page_obj.next_page_number }}">próxima</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+          {% endif %}
+      </span>
+  </div>
+  {% endblock %}
+  </body>
+</html>

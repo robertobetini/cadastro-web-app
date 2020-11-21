@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>CRUD - Delete</title>
+  </head>
+  <body>
+  {% block content %}
+  <h1>Deletar</h1>
+  
+  <p>Você quer mesmo deletar o usuário "{{ usuario.nome }}"?</p>
+  
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Deletar">
+    <input type="submit" value="Cancelar" onclick="window.location.href='{% url 'usuarios:usuario_vis' usuario.id %}';return false;">
+  </form>
+  {% endblock %}
+  </body>
+</html>
