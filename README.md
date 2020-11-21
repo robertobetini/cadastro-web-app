@@ -37,6 +37,12 @@ O Django possui internamente um comando para abrir um servidor e hostear localme
 python manage.py check
 ```
 para verificar se há algum erro no app clonado. Caso se verifique algum erro, confira as versões do Python e do Django instaladas.
+Digite os comandos para fazer as migrações do Model para o Database
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
 Para abrir o servidor, basta inserir o comando
 ```
 python manage.py runserver
