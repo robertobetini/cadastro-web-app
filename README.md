@@ -2,7 +2,7 @@
 Web app que cadastra usuários de acordo com suas informações pessoais.
 Desenvolvido em Django 3.1 (Python 3.8.2), o app pode ser testado pelo [pythonanywhere](http://frutose.pythonanywhere.com/usuarios/).
 
-Para uso local, é necessário realizar as seguintes etapas (caso não tenha o Python instalado, é possível baixá-lo por [aqui](https://www.python.org/downloads/), além de assegurar que a versão do python seja 3.8.2 ou superior:
+Para uso local, é necessário realizar as seguintes etapas (caso não tenha o Python instalado, é possível baixá-lo por [aqui](https://www.python.org/downloads/)), além de assegurar que a versão do python seja 3.8.2 ou superior:
 
 ### Instalar Django em sua máquina
 O django pode ser instalado utilizando o pip. Se você estiver no Windows, abra o cmd e digite o comando
