@@ -31,6 +31,11 @@ git clone https://github.com/robertobetini/cadastro-web-app
 
 Confira se o arquivo manage.py está presente e guarde o caminho até ele.
 
+Caso seja necessário, instale o django-crispy-forms
+```
+python -m pip install django-crispy-forms
+```
+
 ### Abrindo um servidor local
 O Django possui internamente um comando para abrir um servidor e hostear localmente as páginas web. Para isso, vá até o diretório de manage.py, no cmd, e digite o comando
 ```
